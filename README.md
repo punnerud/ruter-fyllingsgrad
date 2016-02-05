@@ -7,4 +7,4 @@ https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeac
 
 #iPhone
 Benytt appen JSAnywhere
-Slett all kode som er der fra før og legg inn koden under HTML
+Slett all kode som er der fra før og legg inn koden fra fyllingsgrad.html under HTML i appen
