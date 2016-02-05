@@ -1,0 +1,96 @@
+<html>
+<head>
+<script src="http://code.jquery.com/jquery-2.1.4.js"></script>
+</head>
+<body>
+<script>
+/*
+var myRe = "/Date(1442612634000+0200)/";
+var unix_timestamp = myRe.match(/\d{10,11}\w+/);
+console.log("Unix: " + unix_timestamp)
+//var unix_timestamp = 1442612634000; //old non dynamic
+var date = new Date(unix_timestamp/1000);
+// hours part from the timestamp
+var hours = date.getHours();
+// minutes part from the timestamp
+var minutes = "0" + date.getMinutes();
+// seconds part from the timestamp
+var seconds = "0" + date.getSeconds();
+
+// will display time in 10:30:23 format
+var formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
+console.log(formattedTime);
+*/
+
+//Henter verdier via RegEx og printer ut tiden
+var unixToTime = function (value) {
+ var myRe = value;
+var unix_timestamp = myRe.match(/\d{10,11}\w+/);
+//console.log("Unix: " + unix_timestamp)
+//var unix_timestamp = 1442612634000; //old non dynamic
+var date = new Date(unix_timestamp/1);
+// hours part from the timestamp
+var hours = date.getHours();
+// minutes part from the timestamp
+var minutes = "0" + date.getMinutes();
+// seconds part from the timestamp
+var seconds = "0" + date.getSeconds();
+var formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
+return formattedTime;
+}
+
+var ruter = Object;
+ID =
+ //3010048; var sted = "Stortorvet";
+// 3010065; var sted = "Brugata";
+3010955; var sted = "Blakkens vei";
+ //3010012; var sted = "Jernbanetorget";
+ //3010771; var sted = "Karlsrud (i Raschs vei)";
+ //3010032; var sted = "Nationaltheatret (i Stortingsg.)";
+ //3010030; var sted = "Nationaltheatret (tog)";
+ //3010513; var sted = "Olaf Ryes plass";
+//3011015; var sted = "Lambertseterveien (peppes)";
+//3010770; var sted = "Karlsrud (t-bane)";
+//3010057; var sted = "Holdbergs plass";
+//3011202; var sted = "Ryen (i Enebakkveien)";
+//2330110; var sted = "Hagan (Nittedal)";
+//3010012; var sted = "Jernbanetorget (Gunnerius g)";
+//3012510; var sted = "Hoff (likeakerveien) trikk";
+//3010213; var sted = "Homansbyen";
+
+
+var holdeplassId = "http://reis.ruter.no/ReisRest/RealTime/GetRealTimeData/"+ID; //Bygger API
+$.ajax({
+// url: "http://reis.ruter.no/ReisRest/RealTime/GetRealTimeData/3010065", // Brugata
+url: holdeplassId, // Stortorvet 
+
+ success: function( data ) {
+ //$( "#weather-temp" ).html( "<strong>" + data + "</strong> degrees" );
+ //ruter = data;
+ console.log(data); //debug
+ //document.write("<br> ------"); //debug
+ //console.log("Array length: " + data.length) // Til feilsøking
+ document.write("Sted: " + sted + "<br><br>");
+ for (i = 0; i < data.length; i++) {
+  var timeArrival = unixToTime(data[i].AimedArrivalTime);
+ var timeExpectedArrival = unixToTime(data[i].ExpectedArrivalTime)
+ document.write("Rute: " + data[i].PublishedLineName + " " + data[i].DestinationName + "<br>");
+  document.write("Aimed Arrival Time: " + timeArrival + "<br>");
+ //console.log("Vehical number: " + data[i].VehicleRef); //Kun på t-bane
+ document.write("Expected Arrival Time: " + timeExpectedArrival + "<br>")
+ try {
+ document.write("Fyllingsgrad: " + data[i].Extensions.OccupancyData.OccupancyPercentage + "<br>");
+ }
+ catch(err) {
+ //console.log("Fyllingsgrad: " + err.message);
+ document.write("Fyllingsgrad: Ingen data<br>")
+ }
+ document.write("<br>");
+ }
+ }
+ 
+});
+
+</script>
+</body>
+</html>
