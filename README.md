@@ -17,3 +17,13 @@ https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeac
 ## iPhone
 Benytt appen JSAnywhere
 Slett all kode som er der fra før og legg inn koden fra fyllingsgrad.html under HTML i appen
+
+## Automatiske tellere ##
+Har nå lastet opp data fra de automatiske tellerne.
+Dataene er hentet hver minutt og gjelder så lang perioden 7. feb til 19.feb 2016 for følgende holdeplasser:
+- Hauketo (3010911)
+- Mortensrud (3010951)
+- BlakkensVei (3010955)
+- BjørnholtØvre (3010970)
+- Bjørndal (3010975)
+- Ryen Ringvei (3011201) - Nummeret er Ruter sin referanse
